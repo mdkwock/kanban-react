@@ -1,0 +1,9 @@
+.date {
+	color: purple;
+}
+.date--completed {
+	color: blue;
+}
+.date .svg-inline--fa {
+	padding-right: 5px;
+}

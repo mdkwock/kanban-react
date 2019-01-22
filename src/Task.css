@@ -1,0 +1,17 @@
+.task {
+	border: solid 1px #E9E9F0;
+	border-radius: 5px;
+}
+
+.task__content {
+	padding: 15px;
+}
+
+.task h4 {
+	text-align: left;
+	margin: 0;
+}
+
+.task__description {
+	color: #6D6879;
+}

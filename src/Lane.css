@@ -1,0 +1,8 @@
+.lane {
+	flex: 0 0 250px;
+	background: white;
+	border-radius: 10px;
+	margin: 0 8px;
+	height: 250px;
+	padding: 10px;
+}
