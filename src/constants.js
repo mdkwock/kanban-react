@@ -1,3 +1,3 @@
-export const BACKLOG_STATUS = 1;
-export const IN_PROGRESS_STATUS = 2;
-export const COMPLETED_STATUS = 3;
+export const BACKLOG_STATUS = 'backlog';
+export const IN_PROGRESS_STATUS = 'inprogress';
+export const COMPLETED_STATUS = 'completed';

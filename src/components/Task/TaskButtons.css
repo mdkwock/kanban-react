@@ -1,0 +1,6 @@
+.task-buttons.task-buttons--inprogress button{
+	width: 50%;
+}
+.task-buttons.task-buttons--inprogress button:last-child{
+	background-color: #00D1BD;
+}

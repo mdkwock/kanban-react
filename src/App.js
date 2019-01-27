@@ -1,46 +1,78 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux';
+import Modal from 'react-modal';
 
 import {BACKLOG_STATUS, IN_PROGRESS_STATUS, COMPLETED_STATUS} from './constants';
-import Lane from './Lane';
-import Task from './Task';
+import Lane from './components/Lane/Lane';
+import Task from './components/Task/Task';
+import CreateTaskForm from './components/Task/CreateTaskForm';
 
+import {startCreateTask, cancelCreateTask, createTask} from './actions/taskActions';
+
+// TODO: use sass rather than css
 import './App.css';
-
-const task = {
-  title: 'test',
-  description: 'my description',
-  dueDate: '2017-05-15T08:30:00',
-  status: BACKLOG_STATUS,
-}
-
-const testData = [
-  task,
-];
 
 class App extends Component {
   render() {
-    const tasks = testData;
-    const backlog = tasks.filter(task => task.status === BACKLOG_STATUS);
-    const inProgress = tasks.filter(task => task.status === IN_PROGRESS_STATUS);
-    const completed = tasks.filter(task => task.status === COMPLETED_STATUS);
+    // TODO: target inprogress button css better
     return (
       <div className="App">
         <Lane
           title="Backlog"
         >
-          {backlog.map(task => <Task {...task} />)}
+          {this.props.backlog.map(task => <Task key={task.id} {...task} />)}
+          <div className="lane__actions">
+            <button onClick={() => this.props.startCreateTask(BACKLOG_STATUS)}>Create task</button>
+          </div>
         </Lane>
         <Lane
-          title="In Progress">
+          title="In Progress"
+        >
+          {this.props.inProgress.map(task => <Task key={task.id} {...task} />)}
+          <div className="lane__actions lane__actions-inprogress">
+            <button onClick={() => this.props.startCreateTask(IN_PROGRESS_STATUS)}>Create task</button>
+          </div>
         </Lane>
-          {inProgress.map(task => <Task {...task} />)}
         <Lane
-          title="Completed">
-          {completed.map(task => <Task {...task} />)}
+          title="Completed"
+        >
+          {this.props.completed.map(task => <Task key={task.id} {...task} />)}
         </Lane>
+         <Modal
+          isOpen={this.props.modalOpen}
+          onRequestClose={this.props.cancelCreateTask}
+          contentLabel="Create new task"
+        >
+          <CreateTaskForm
+            onCancel={this.props.cancelCreateTask}
+            onSubmit={this.props.createTask}
+            startingStatus={this.props.startingTaskStatus}
+          />
+        </Modal>
       </div>
     );
   }
 }
 
-export default App;
+const mapStateToProps = ({taskState, uiState}) => {
+  const {tasks} = taskState;
+  const {startingTask} = uiState;
+  const backlog = taskState[BACKLOG_STATUS].map(id => tasks[id]);
+  const inProgress = taskState[IN_PROGRESS_STATUS].map(id => tasks[id]);
+  const completed = taskState[COMPLETED_STATUS].map(id => tasks[id]);
+  return {
+    backlog,
+    inProgress,
+    completed,
+    modalOpen: !!startingTask,
+    startingTaskStatus: startingTask,
+  }
+};
+
+const mapDispatchToProps = {
+  startCreateTask,
+  cancelCreateTask,
+  createTask,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -4,7 +4,7 @@ import './Lane.css';
 
 const Lane = ({
 	title,
-	children
+	children,
 }) => (
 	<div className="lane">
 		<h3>{title}</h3>
