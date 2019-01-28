@@ -16,7 +16,7 @@ const TaskButtons = ({
 		case IN_PROGRESS_STATUS:
 			return (
 				<div className="task-buttons task-buttons--inprogress">
-					<button onClick={() => moveTask(id, status, BACKLOG_STATUS)}>Backlog</button>
+					<button className="btn" onClick={() => moveTask(id, status, BACKLOG_STATUS)}>Backlog</button>
 					<button onClick={() => moveTask(id, status, COMPLETED_STATUS)}>Complete</button>
 				</div>
 			);

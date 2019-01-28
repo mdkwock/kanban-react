@@ -7,7 +7,7 @@ import Lane from './components/Lane/Lane';
 import Task from './components/Task/Task';
 import CreateTaskForm from './components/Task/CreateTaskForm';
 
-import {startCreateTask, cancelCreateTask, createTask} from './actions/taskActions';
+import {startCreateTask, cancelCreateTask, createTask, deleteTask, updateTask} from './actions/taskActions';
 
 // TODO: use sass rather than css
 import './App.css';
@@ -45,8 +45,10 @@ class App extends Component {
         >
           <CreateTaskForm
             onCancel={this.props.cancelCreateTask}
-            onSubmit={this.props.createTask}
+            onSubmit={this.props.activeTask.id ? this.props.updateTask : this.props.createTask}
             startingStatus={this.props.startingTaskStatus}
+            {...this.props.activeTask}
+            onDelete={this.props.deleteTask}
           />
         </Modal>
       </div>
@@ -56,16 +58,18 @@ class App extends Component {
 
 const mapStateToProps = ({taskState, uiState}) => {
   const {tasks} = taskState;
-  const {startingTask} = uiState;
+  const {startingTask, activeTask} = uiState;
   const backlog = taskState[BACKLOG_STATUS].map(id => tasks[id]);
   const inProgress = taskState[IN_PROGRESS_STATUS].map(id => tasks[id]);
   const completed = taskState[COMPLETED_STATUS].map(id => tasks[id]);
+  const editingTask = activeTask ? tasks[activeTask] : {};
   return {
     backlog,
     inProgress,
     completed,
-    modalOpen: !!startingTask,
+    modalOpen: !!(startingTask || activeTask),
     startingTaskStatus: startingTask,
+    activeTask: editingTask,
   }
 };
 
@@ -73,6 +77,8 @@ const mapDispatchToProps = {
   startCreateTask,
   cancelCreateTask,
   createTask,
+  deleteTask,
+  updateTask,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

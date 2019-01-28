@@ -16,3 +16,64 @@
 .task__description {
 	color: #6D6879;
 }
+
+.ReactModal__Content {
+	width: 500px;
+	margin: auto;
+	left: auto;
+}
+
+.task-form {
+	width: 400px;
+	margin: 0 auto;
+}
+
+.task-form__actions {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	padding-top: 20px;
+}
+
+.task-form__actions a {
+	color: #7F50FF;
+	padding: 30px;
+}
+
+.task-form label {
+	display: block;
+	padding-bottom: 10px;
+}
+.task-form input,
+.task-form textarea {
+    border-radius: 5px;
+    border: solid 1px black;
+    padding: 5px;
+	margin-bottom: 10px;
+	width: 100%;
+}
+
+/* TODO: make more hover colors */
+.task-form__actions a:hover{
+	color: #4c3786;
+}
+
+.task-form__actions button:hover {
+	background-color: #4c3786;
+}
+
+.task-form__actions button {
+	width: 120px;
+	background-color: #7F50FF;
+	color: #FFFFFF;
+	border-radius: 5px;
+}
+
+.task-form__actions button.delete {
+	background-color: #FF001F;
+	margin-right: auto;
+}
+
+.task-form__actions button.delete:hover {
+	background-color: #ab0015;
+}
