@@ -2,16 +2,8 @@ import {MOVE_TASK, CREATE_TASK, DELETE_TASK, UPDATE_TASK} from '../actions/taskA
 import {BACKLOG_STATUS, IN_PROGRESS_STATUS, COMPLETED_STATUS} from '../constants';
 import {DateTime} from 'luxon';
 
-const task = {
-  id: 1,
-  title: 'test',
-  description: 'my description',
-  dueDate: '2017-05-15',
-  status: IN_PROGRESS_STATUS,
-}
-
 const initialState = {
-	tasks: {1: task},
+	tasks: {},
 	[BACKLOG_STATUS]: [],
 	[IN_PROGRESS_STATUS]:[1],
 	[COMPLETED_STATUS]: [],

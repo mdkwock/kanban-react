@@ -6,6 +6,7 @@
 
 .task__content {
 	padding: 15px;
+	cursor: pointer;
 }
 
 .task h4 {

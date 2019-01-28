@@ -1,3 +1,16 @@
+## TODO:
++ Create a nicer initial state
++ Add drag and drop library, allow for reordering and moving
++ Add sass in for faster css styling
++ Create varibles for colors, spacing to keep consistency easier
++ Make editing for tasks easier to discover, either through icon or hover effect etc.
++ Use a date picker library, with possible mobile override
++ Remove task objects from the task store, right now it potentially causes an issue with id numbering
++ Add tests
+
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
