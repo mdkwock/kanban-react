@@ -5,7 +5,7 @@ import {DateTime} from 'luxon';
 const initialState = {
 	tasks: {},
 	[BACKLOG_STATUS]: [],
-	[IN_PROGRESS_STATUS]:[1],
+	[IN_PROGRESS_STATUS]:[],
 	[COMPLETED_STATUS]: [],
 }
 
